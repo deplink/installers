@@ -1,3 +1,10 @@
+:: Get first argument (deplink version),
+:: or use master if version not set.
+set version=%1
+if ["%version%"]==[""] (
+    set version=master
+)
+
 :: Download PHP for Windows
 if not exist "src\php" (
 	mkdir tmp
@@ -14,7 +21,7 @@ if not exist "src\vc14" (
 )
 
 :: Clone and build Deplink CLI
-if not exist "src\bin\deplink.phar" (
+if not exist "output\deplink-%version%.exe" (
 	git clone https://github.com/deplink/deplink tmp
 	git -C tmp checkout %1
 	call composer run-script test --working-dir tmp
@@ -25,3 +32,4 @@ if not exist "src\bin\deplink.phar" (
 
 :: Create setup file
 iscc installer.iss
+move output\deplink.exe "output\deplink-%version%.exe"

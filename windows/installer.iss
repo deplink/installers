@@ -13,7 +13,7 @@ UninstallDisplayIcon={app}\deplink.ico
 ; Output Artifacts
 DefaultDirName={pf}\Deplink
 OutputDir=output
-OutputBaseFilename=Deplink Setup
+OutputBaseFilename=deplink
 
 ; Windows Environment
 ChangesEnvironment=true

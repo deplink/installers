@@ -1,3 +1,7 @@
+#
+# Temporary files and output artifacts.
+#
+
 /tmp
 /output
 
