@@ -4,12 +4,5 @@ services:
   - docker
 
 script:
-  - echo "Deployment only!"
-
-deploy:
-  - provider: script
-    script:
-      - chmod +x docker/build.sh
-      - docker/build.sh $TRAVIS_TAG
-    on:
-      branch: master
+  - chmod +x docker/build.sh
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./docker/build.sh $TRAVIS_TAG; fi

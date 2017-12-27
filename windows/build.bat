@@ -1,6 +1,6 @@
 :: Get first argument (deplink version),
 :: or use master if version not set.
-tag=%1
+set tag=%1
 set version=%1
 if ["%version%"]==[""] (
     set tag=latest
