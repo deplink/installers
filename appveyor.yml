@@ -14,12 +14,9 @@ init:
   - cinst unzip
   - refreshenv
 
-install:
-  - set PATH="C:\Program Files (x86)\Inno Setup 5;%PATH%"
-
 test_script:
   - cd windows
-  - cmd /c start /wait build.bat %APPVEYOR_REPO_TAG_NAME%
+  - build.bat %APPVEYOR_REPO_TAG_NAME%
 
 deploy:
   provider: FTP
