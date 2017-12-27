@@ -1,0 +1,24 @@
+build: false
+clone_folder: C:\projects\deplink
+
+image:
+  - Visual Studio 2017
+
+platform:
+  - x64
+
+install:
+- set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
+
+test_script:
+  - windows\build.bat %APPVEYOR_REPO_TAG_NAME%
+
+deploy:
+  provider: FTP
+  protocol: sftp
+  host: deplink.org
+  username: appveyor
+  password:
+    secure: tzqCnq/QueBd+wDNls0uK8EPs6jPyVYQLLT8RSt1XhY=
+  folder: /var/www/cdn.deplink.org/download/windows/
+  artifact: /windows\output\deplink-.*\.exe/

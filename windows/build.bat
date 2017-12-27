@@ -1,7 +1,9 @@
 :: Get first argument (deplink version),
 :: or use master if version not set.
+tag=%1
 set version=%1
 if ["%version%"]==[""] (
+    set tag=latest
     set version=master
 )
 
@@ -21,7 +23,7 @@ if not exist "src\vc14" (
 )
 
 :: Clone and build Deplink CLI
-if not exist "output\deplink-%version%.exe" (
+if not exist "output\deplink-%tag%.exe" (
 	git clone https://github.com/deplink/deplink tmp
 	git -C tmp checkout %version%
 	call composer run-script test --working-dir tmp
@@ -32,4 +34,4 @@ if not exist "output\deplink-%version%.exe" (
 
 :: Create setup file
 iscc installer.iss
-move output\deplink.exe "output\deplink-%version%.exe"
+move output\deplink.exe "output\deplink-%tag%.exe"

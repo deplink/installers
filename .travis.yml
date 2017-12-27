@@ -1,5 +1,15 @@
+sudo: required
+
+services:
+  - docker
+
+script:
+  - echo "Deployment only!"
+
 deploy:
   - provider: script
-    script: docker/build.sh $TRAVIS_TAG
+    script:
+      - chmod +x docker/build.sh
+      - docker/build.sh $TRAVIS_TAG
     on:
       branch: master
