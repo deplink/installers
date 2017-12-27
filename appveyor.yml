@@ -15,10 +15,11 @@ init:
   - refreshenv
 
 install:
-- set PATH="C:\Program Files (x86)\Inno Setup 5;%PATH%"
+  - set PATH="C:\Program Files (x86)\Inno Setup 5;%PATH%"
 
 test_script:
-  - windows\build.bat %APPVEYOR_REPO_TAG_NAME%
+  - cd windows
+  - cmd /c start /wait build.bat %APPVEYOR_REPO_TAG_NAME%
 
 deploy:
   provider: FTP
