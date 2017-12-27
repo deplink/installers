@@ -1,0 +1,5 @@
+deploy:
+  - provider: script
+    script: docker/build.sh $TRAVIS_TAG
+    on:
+      branch: master
