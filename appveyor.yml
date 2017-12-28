@@ -29,4 +29,4 @@ deploy:
   password:
     secure: tzqCnq/QueBd+wDNls0uK8EPs6jPyVYQLLT8RSt1XhY=
   folder: /var/www/cdn.deplink.org/download/windows/
-  artifact: /windows\output\deplink-.*\.exe/
+  artifact: /windows\\output\\deplink-.*\.exe/
