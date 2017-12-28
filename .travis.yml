@@ -11,7 +11,10 @@ addons:
   ssh_known_hosts: deplink.org
 
 script:
+  # Build and publish newer docker image.
   - chmod +x docker/build.sh
-  - chmod +x phar/deploy.sh
   - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./docker/build.sh $TRAVIS_TAG; fi
+
+  # Deploy phar archive to cdn.deplink.org.
+  - chmod +x phar/deploy.sh
   - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./phar/deploy.sh $TRAVIS_TAG; fi

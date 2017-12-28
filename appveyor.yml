@@ -16,17 +16,24 @@ init:
   - refreshenv
 
 install:
+  # Enable creating phar archives in PHP.
+  # Script replaces the ";phar.readonly = On" to "phar.readonly = Off" in php.ini.
   - ps: (Get-Content 'C:\tools\php\php.ini').replace(';phar.readonly = On', 'phar.readonly = Off') | Set-Content 'C:\tools\php\php.ini'
 
 test_script:
   - cd windows && build.bat %APPVEYOR_REPO_TAG_NAME%
 
+after_test:
+  # Add all .exe files inside windows/output directory as a deployment artifacts
+  # (https://help.appveyor.com/discussions/problems/2273-deploy-replicates-directory-structure-from-artifact).
+  - ps: Get-ChildItem .\windows\output\*.exe | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name -DeploymentName deplink }
+
 deploy:
+  name: deplink
   provider: FTP
   protocol: sftp
   host: deplink.org
   username: appveyor
   password:
     secure: tzqCnq/QueBd+wDNls0uK8EPs6jPyVYQLLT8RSt1XhY=
-  folder: /var/www/cdn.deplink.org/download/windows/
-  artifact: /windows\\output\\deplink-.*\.exe/
+  folder: /var/www/cdn.deplink.org/download/windows
