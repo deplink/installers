@@ -26,7 +26,6 @@ if not exist "src\vc14" (
 if not exist "output\deplink-%tag%.exe" (
 	git clone https://github.com/deplink/deplink tmp
 	git -C tmp checkout %version%
-	call composer run-script test --working-dir tmp
 	call composer run-script build --working-dir tmp
 	cp tmp/bin/deplink.phar src/bin/deplink.phar
 	rmdir /S /Q tmp

@@ -16,7 +16,8 @@ init:
   - refreshenv
 
 install:
-  - (Get-Content C:\tools\php\php.ini) -replace ';phar.readonly = On', 'phar.readonly = Off' | Set-Content C:\tools\php\php.ini
+  - $file = 'C:\tools\php\php.ini'
+  - (Get-Content $file).replace(';phar.readonly = On', 'phar.readonly = Off') | Set-Content $file
 
 test_script:
   - cd windows
