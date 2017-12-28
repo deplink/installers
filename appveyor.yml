@@ -16,12 +16,10 @@ init:
   - refreshenv
 
 install:
-  - $file = 'C:\tools\php\php.ini'
-  - (Get-Content $file).replace(';phar.readonly = On', 'phar.readonly = Off') | Set-Content $file
+  - ps: (Get-Content 'C:\tools\php\php.ini').replace(';phar.readonly = On', 'phar.readonly = Off') | Set-Content 'C:\tools\php\php.ini'
 
 test_script:
-  - cd windows
-  - build.bat %APPVEYOR_REPO_TAG_NAME%
+  - cd windows && build.bat %APPVEYOR_REPO_TAG_NAME%
 
 deploy:
   provider: FTP
