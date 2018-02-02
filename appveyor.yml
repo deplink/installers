@@ -36,4 +36,4 @@ deploy:
   username: appveyor
   password:
     secure: tzqCnq/QueBd+wDNls0uK8EPs6jPyVYQLLT8RSt1XhY=
-  folder: /var/www/cdn.deplink.org/download/windows
+  folder: ../../var/www/cdn.deplink.org/download/windows
