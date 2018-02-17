@@ -3,7 +3,7 @@ dir="$(cd "$(dirname "$0")" && pwd)"
 # Get first argument (deplink version),
 # or use default ("master") if not set.
 tag=$1
-version=$1
+version=`echo $1 | tail -c +2`
 if [ -z "$version" ]; then
     tag=latest
     version=master

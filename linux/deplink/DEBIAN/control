@@ -1,5 +1,5 @@
 Package: deplink
-Version: latest
+Version: 0.1.0
 Section: development
 Priority: optional
 Architecture: all
