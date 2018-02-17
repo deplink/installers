@@ -4,7 +4,7 @@ dir="$(cd "$(dirname "$0")" && pwd)"
 # or use default ("master") if not set.
 tag=$1
 version=`echo $1 | tail -c +2`
-if [ -z "$version" ]; then
+if [ -z "$tag" ]; then
     tag=latest
     version=master
 fi;

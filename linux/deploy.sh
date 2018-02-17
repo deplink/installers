@@ -4,7 +4,7 @@ dir="$(cd "$(dirname "$0")" && pwd)"
 # or use default ("master") if not set.
 tag=$1
 version=`echo $1 | tail -c +2`
-if [ -z "$version" ]; then
+if [ -z "$tag" ]; then
     tag=latest
     version=master
 fi;
@@ -19,7 +19,7 @@ if [ ! -f "${dir}/artifacts/deplink-${tag}.phar" ]; then
 	cp "${dir}/tmp/bin/deplink.phar" "${dir}/deplink/usr/share/deplink/bin/deplink-${tag}.phar"
 
 	mkdir -p "${dir}/deplink/usr/bin"
-    echo 'php /usr/share/deplink/bin/deplink-${tag}.phar $@' > "${dir}/deplink/usr/bin/deplink"
+    echo 'php /usr/share/deplink/bin/deplink-'"${tag}"'.phar $@' > "${dir}/deplink/usr/bin/deplink"
 
     if [ "$version" != "master" ]; then
         sed_find="Version: 0.1.0"
