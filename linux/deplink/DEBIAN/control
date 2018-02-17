@@ -1,0 +1,9 @@
+Package: deplink
+Version: latest
+Section: development
+Priority: optional
+Architecture: all
+Depends: php-cli (>= 5.6)
+Maintainer: support@deplink.org
+Description: Deplink CLI
+ Dependency Manager for C/C++

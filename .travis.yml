@@ -15,6 +15,10 @@ script:
   - chmod +x docker/build.sh
   - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./docker/build.sh $TRAVIS_TAG; fi
 
-  # Deploy phar archive to cdn.deplink.org.
+  # Deploy phar archive to cdn.deplink.org/download/phar.
   - chmod +x phar/deploy.sh
   - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./phar/deploy.sh $TRAVIS_TAG; fi
+
+  # Deploy .deb package to cdn.deplink.org/download/linux.
+  - chmod +x linux/deploy.sh
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./linux/deploy.sh $TRAVIS_TAG; fi
