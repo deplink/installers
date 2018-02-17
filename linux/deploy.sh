@@ -31,6 +31,7 @@ if [ ! -f "${dir}/deplink/usr/share/deplink/bin/deplink-${tag}.phar" ]; then
 fi
 
 # Build .deb package
+chmod 775 "${dir}/deplink/DEBIAN/postinst"
 dpkg-deb --build "${dir}/deplink"
 
 # Register Travis CI key
