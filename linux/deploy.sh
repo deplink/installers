@@ -10,7 +10,7 @@ if [ -z "$tag" ]; then
 fi;
 
 # Clone and build Deplink CLI
-if [ ! -f "${dir}/artifacts/deplink-${tag}.phar" ]; then
+if [ ! -f "${dir}/deplink/usr/share/deplink/bin/deplink-${tag}.phar" ]; then
 	git clone https://github.com/deplink/deplink "${dir}/tmp"
 	git -C "${dir}/tmp" checkout $version
 	composer run-script build --working-dir "${dir}/tmp"
