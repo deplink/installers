@@ -7,7 +7,11 @@ image:
 platform:
   - x64
 
-init:
+install:
+  # Resolve the issue: "php (exited 404) - Error while running 'C:\ProgramData\chocolatey\lib\php\tools\chocolateyInstall.ps1'"
+  # (more details: https://help.appveyor.com/discussions/problems/5616-not-able-to-build-due-to-problem-in-chocolateyinstallps1)
+  - ps: Set-Service wuauserv -StartupType Manual
+
   - cinst php --version 7.0.1 --allow-empty-checksums
   - cinst composer --version 4.7.0 --allow-empty-checksums
   - cinst innosetup --version 5.5.9.20171105
@@ -15,7 +19,6 @@ init:
   - cinst unzip
   - refreshenv
 
-install:
   # Enable creating phar archives in PHP.
   # Script replaces the ";phar.readonly = On" to "phar.readonly = Off" in php.ini.
   - ps: (Get-Content 'C:\tools\php\php.ini').replace(';phar.readonly = On', 'phar.readonly = Off') | Set-Content 'C:\tools\php\php.ini'
