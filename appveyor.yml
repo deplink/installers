@@ -21,7 +21,7 @@ install:
 
   # Enable creating phar archives in PHP.
   # Script replaces the ";phar.readonly = On" to "phar.readonly = Off" in php.ini.
-  - ps: (Get-Content 'C:\tools\php\php.ini').replace(';phar.readonly = On', 'phar.readonly = Off') | Set-Content 'C:\tools\php\php.ini'
+  - ps: (Get-Content 'C:\tools\php72\php.ini').replace(';phar.readonly = On', 'phar.readonly = Off') | Set-Content 'C:\tools\php72\php.ini'
 
 test_script:
   - cd windows && build.bat %APPVEYOR_REPO_TAG_NAME%
