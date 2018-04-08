@@ -40,5 +40,4 @@ end;
 
 [Run]
 // https://blogs.msdn.microsoft.com/astebner/2010/10/20/mailbag-how-to-perform-a-silent-install-of-the-visual-c-2010-redistributable-packages/
-Filename: "{app}\vc14\vc_redist.x64.exe"; Parameters: "/passive /norestart"; Check: IsTaskSelected('vc14') and IsWin64
-Filename: "{app}\vc14\vc_redist.x86.exe"; Parameters: "/passive /norestart"; Check: IsTaskSelected('vc14') and not IsWin64
+Filename: "{app}\vc14\vc_redist.x86.exe"; Parameters: "/passive /norestart"; Check: IsTaskSelected('vc14')
