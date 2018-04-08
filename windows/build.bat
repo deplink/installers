@@ -13,7 +13,13 @@ if not exist "src\php" (
 	curl -L https://windows.php.net/downloads/releases/archives/php-7.1.10-Win32-VC14-x86.zip -o tmp/php-7.1.10.zip
 	unzip tmp/php-7.1.10.zip -d src/php
 	rmdir /S /Q tmp
+
+	cp src/php/php.ini-production src/php/php.ini
+	sed -i 's/;extension=php_openssl.dll/extension=php_openssl.dll/g' src/php/php.ini
+	sed -i 's/; extension_dir = "ext"/extension_dir = "ext"/g' src/php/php.ini
 )
+
+exit \b
 
 :: Download C++ Redistributable for Visual Studio 2015
 if not exist "src\vc14" (
