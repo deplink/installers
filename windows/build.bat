@@ -19,8 +19,6 @@ if not exist "src\php" (
 	sed -i 's/; extension_dir = "ext"/extension_dir = "ext"/g' src/php/php.ini
 )
 
-exit \b
-
 :: Download C++ Redistributable for Visual Studio 2015
 if not exist "src\vc14" (
 	mkdir src\vc14
