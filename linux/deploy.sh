@@ -13,6 +13,12 @@ fi;
 if [ ! -f "${dir}/deplink/usr/share/deplink/bin/deplink-${tag}.phar" ]; then
 	git clone https://github.com/deplink/deplink "${dir}/tmp"
 	git -C "${dir}/tmp" checkout $version
+
+	# Update version
+	hash=`git -C "${dir}/tmp" rev-parse --short HEAD`
+	sed -i "s/'version' => 'dev-build'/'version' => '$tag [$hash]'/g" "${dir}/tmp/config/console.php"
+
+	# Build phar archive
 	composer run-script build --working-dir "${dir}/tmp"
 
 	mkdir -p "${dir}/deplink/usr/share/deplink/bin"

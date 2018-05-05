@@ -1,3 +1,5 @@
+SETLOCAL ENABLEDELAYEDEXPANSION
+
 :: Get first argument (deplink version),
 :: or use master if version not set.
 set tag=%1
@@ -29,9 +31,11 @@ if not exist "src\vc14" (
 if not exist "output\deplink-%tag%.exe" (
 	git clone https://github.com/deplink/deplink tmp
 	git -C tmp checkout %version%
+	for /F "tokens=* USEBACKQ" %%F in (`git -C tmp rev-parse --short HEAD`) do set hash=%%F
+	sed -i "s/'version' => 'dev-build'/'version' => '%tag% [%hash%]'/g" tmp/config/console.php
 	call composer run-script build --working-dir tmp
 	cp tmp/bin/deplink.phar src/bin/deplink.phar
-	rmdir /S /Q tmp
+    rmdir /S /Q tmp
 )
 
 :: Create setup file
